@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsdcx6n30jnrf"]
+[gd_scene load_steps=3 format=3 uid="uid://bsdcx6n30jnrf"]
 
 [ext_resource type="Texture2D" uid="uid://dut77gw26tmia" path="res://assets/Space_BG (2 frames) (64 x 64).png" id="1_c6xgu"]
+[ext_resource type="PackedScene" uid="uid://ntmdnsemdw6d" path="res://src/player/player.tscn" id="2_km5bu"]
 
 [node name="Main" type="Node2D"]
 
@@ -11,3 +12,5 @@ scale = Vector2(1.1, 1.1)
 texture = ExtResource("1_c6xgu")
 region_enabled = true
 region_rect = Rect2(0, 0, 240, 320)
+
+[node name="Player" parent="." instance=ExtResource("2_km5bu")]
