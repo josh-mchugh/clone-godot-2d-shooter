@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4awcfhwlbgce"]
+
+[ext_resource type="Texture2D" uid="uid://d1dyilcsionwk" path="res://assets/enemey/Bon_Bon (16 x 16).png" id="1_fakbv"]
+[ext_resource type="Script" path="res://src/enemy/enemy.gd" id="1_oxrmu"]
+[ext_resource type="Texture2D" uid="uid://wlxkr31krrsk" path="res://assets/effects/Explosion (16 x 16).png" id="3_s5k5l"]
+
+[sub_resource type="Animation" id="Animation_pren1"]
+resource_name = "bounce"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 1, 0, 3, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_fakbv")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_ko16m"]
+resource_name = "explode"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_s5k5l")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_prp2l"]
+_data = {
+"bounce": SubResource("Animation_pren1"),
+"explode": SubResource("Animation_ko16m")
+}
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+script = ExtResource("1_oxrmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fakbv")
+hframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_prp2l")
+}
+autoplay = "bounce"
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
