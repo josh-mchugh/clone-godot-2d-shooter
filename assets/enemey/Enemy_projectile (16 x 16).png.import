@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctq4pv36osc4d"
-path="res://.godot/imported/Player_charged_beam (16 x 16).png-5c96bbcfc7883bada80ede0cecac22c3.ctex"
+uid="uid://cu5nqpw1c45ux"
+path="res://.godot/imported/Enemy_projectile (16 x 16).png-74406da566d2f3e922d826123676e678.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bullet/Player_charged_beam (16 x 16).png"
-dest_files=["res://.godot/imported/Player_charged_beam (16 x 16).png-5c96bbcfc7883bada80ede0cecac22c3.ctex"]
+source_file="res://assets/enemey/Enemy_projectile (16 x 16).png"
+dest_files=["res://.godot/imported/Enemy_projectile (16 x 16).png-74406da566d2f3e922d826123676e678.ctex"]
 
 [params]
 
