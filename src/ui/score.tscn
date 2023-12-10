@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://yb5ndw51wlyv"]
+
+[ext_resource type="Script" path="res://src/ui/score.gd" id="1_1nbcd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m0efr"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-6ca3a7aab045c47a69fde7d0c1ea8a97.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfm3n"]
+atlas = SubResource("CompressedTexture2D_m0efr")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bch0g"]
+atlas = SubResource("CompressedTexture2D_m0efr")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1wf5"]
+atlas = SubResource("CompressedTexture2D_m0efr")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i36h3"]
+atlas = SubResource("CompressedTexture2D_m0efr")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykb7l"]
+atlas = SubResource("CompressedTexture2D_m0efr")
+region = Rect2(32, 8, 8, 8)
+
+[node name="Score" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("1_1nbcd")
+
+[node name="Digit0" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mfm3n")
+stretch_mode = 5
+
+[node name="Digit1" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mfm3n")
+stretch_mode = 5
+
+[node name="Digit2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mfm3n")
+stretch_mode = 5
+
+[node name="Digit3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mfm3n")
+stretch_mode = 5
+
+[node name="Digit4" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_bch0g")
+stretch_mode = 5
+
+[node name="Digit5" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_s1wf5")
+stretch_mode = 5
+
+[node name="Digit6" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_i36h3")
+stretch_mode = 5
+
+[node name="Digit7" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ykb7l")
+stretch_mode = 5

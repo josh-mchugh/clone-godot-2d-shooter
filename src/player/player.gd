@@ -1,12 +1,18 @@
 extends Area2D
 
+signal died
+signal shield_changed
+
 @export var speed = 150
 @export var cooldown = 0.25
 @export var bullet_scene: PackedScene
+@export var max_shield = 10
 
 @onready var screensize = get_viewport_rect().size
 
 var can_shoot = true
+var shield = max_shield:
+	set = set_shield
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,5 +49,18 @@ func shoot():
 	get_tree().root.add_child(bullet)
 	bullet.start(position + Vector2(0, -8))
 
+func set_shield(value):
+	shield = min(max_shield, value)
+	shield_changed.emit(max_shield, shield)
+	if shield < 0:
+		hide()
+		died.emit()
+
 func _on_gun_cooldown_timeout():
 	can_shoot = true
+
+
+func _on_area_entered(area):
+	if area.is_in_group("enemies"):
+		area.explode()
+		shield -= max_shield / 2

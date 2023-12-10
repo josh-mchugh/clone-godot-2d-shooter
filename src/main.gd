@@ -22,4 +22,4 @@ func spawn_enemies():
 
 func _on_enemy_died(value):
 	score += value
-	print("Score: " + score)
+	$CanvasLayer/UI.update_score(score)

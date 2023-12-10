@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsdcx6n30jnrf"]
+[gd_scene load_steps=8 format=3 uid="uid://bsdcx6n30jnrf"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_3683i"]
 [ext_resource type="Texture2D" uid="uid://dut77gw26tmia" path="res://assets/Space_BG (2 frames) (64 x 64).png" id="1_c6xgu"]
 [ext_resource type="PackedScene" uid="uid://ntmdnsemdw6d" path="res://src/player/player.tscn" id="2_km5bu"]
+[ext_resource type="PackedScene" uid="uid://bjahrvt34q30y" path="res://src/ui/ui.tscn" id="4_nhgtq"]
 
 [sub_resource type="Animation" id="Animation_rp823"]
 length = 0.001
@@ -60,3 +61,9 @@ libraries = {
 "": SubResource("AnimationLibrary_ocwrh")
 }
 autoplay = "scroll"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_nhgtq")]
+
+[connection signal="shield_changed" from="Player" to="CanvasLayer/UI" method="update_shield"]
