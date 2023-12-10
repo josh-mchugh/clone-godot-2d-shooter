@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsdcx6n30jnrf"]
+[gd_scene load_steps=10 format=3 uid="uid://bsdcx6n30jnrf"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_3683i"]
 [ext_resource type="Texture2D" uid="uid://dut77gw26tmia" path="res://assets/Space_BG (2 frames) (64 x 64).png" id="1_c6xgu"]
 [ext_resource type="PackedScene" uid="uid://ntmdnsemdw6d" path="res://src/player/player.tscn" id="2_km5bu"]
 [ext_resource type="PackedScene" uid="uid://bjahrvt34q30y" path="res://src/ui/ui.tscn" id="4_nhgtq"]
+[ext_resource type="Texture2D" uid="uid://d3sekfpf7dpr3" path="res://assets/ui/START (48 x 8).png" id="5_wwd2f"]
+[ext_resource type="Texture2D" uid="uid://dwaowaakxj770" path="res://assets/ui/GAME_OVER (72 x 8).png" id="6_x6hod"]
 
 [sub_resource type="Animation" id="Animation_rp823"]
 length = 0.001
@@ -46,6 +48,25 @@ _data = {
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3683i")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_nhgtq")]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="TextureButton" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_wwd2f")
+
+[node name="GameOver" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("6_x6hod")
+
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
 scale = Vector2(1.1, 1.1)
@@ -62,8 +83,6 @@ libraries = {
 }
 autoplay = "scroll"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="UI" parent="CanvasLayer" instance=ExtResource("4_nhgtq")]
-
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="shield_changed" from="Player" to="CanvasLayer/UI" method="update_shield"]

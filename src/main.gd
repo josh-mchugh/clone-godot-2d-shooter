@@ -1,15 +1,15 @@
 extends Node2D
 
+@onready var start_button = $CanvasLayer/CenterContainer/Start
+@onready var game_over = $CanvasLayer/CenterContainer/GameOver
+
 var enemy = preload("res://src/enemy/enemy.tscn")
 var score = 0
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	spawn_enemies()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _ready():	
+	start_button.show()
+	game_over.hide()
 
 func spawn_enemies():
 	for x in range(9):
@@ -23,3 +23,20 @@ func spawn_enemies():
 func _on_enemy_died(value):
 	score += value
 	$CanvasLayer/UI.update_score(score)
+
+func _on_start_pressed():
+	start_button.hide()
+	new_game()
+	
+func new_game():
+	$CanvasLayer/UI.update_score(0)
+	$Player.start()
+	spawn_enemies()
+
+func _on_player_died():
+	get_tree().call_group("enemies", "queue_free")
+	game_over.show()
+	await get_tree().create_timer(2).timeout
+	game_over.hide()
+	start_button.show()
+	

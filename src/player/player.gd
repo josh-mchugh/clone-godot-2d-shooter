@@ -19,7 +19,9 @@ func _ready():
 	start()
 	
 func start():
+	show()
 	position = Vector2(screensize.x / 2, screensize.y - 64)
+	shield = max_shield
 	$GunCooldown.wait_time = cooldown
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
